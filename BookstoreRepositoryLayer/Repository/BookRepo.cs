@@ -29,6 +29,7 @@ namespace BookstoreRepositoryLayer.Repository
                 }
                 return null;
         }
+
         public IEnumerable<BookModel> GetAllBooks(int userId)
         {
             return this.userDbContext.BookDB.Where(user => user.UserId == userId ).ToList<BookModel>();
@@ -48,6 +49,14 @@ namespace BookstoreRepositoryLayer.Repository
             book.addedTocard = newBook.addedTocard;
             userDbContext.SaveChanges();
             return book;
+        }
+        public int DeleteBook(int bookId)
+        {
+            BookModel book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == bookId);
+            this.userDbContext.BookDB.Remove(book);
+            this.userDbContext.SaveChanges();
+            return bookId;
+
         }
     }
 

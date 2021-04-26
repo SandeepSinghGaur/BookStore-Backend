@@ -27,5 +27,9 @@ namespace BookstoreManagerLayer.Manager
         {
             return this.bookRepo.UpdateBook(userId, newBook);
         }
+        public int DeleteBook(int bookId)
+        {
+            return this.bookRepo.DeleteBook(bookId);
+        }
     }
 }

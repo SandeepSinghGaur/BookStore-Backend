@@ -87,5 +87,24 @@ namespace BookStore.Controllers
             }
 
         }
+        [HttpDelete]
+        [Route("{bookId}")]
+        public ActionResult DeleteBook(int bookId)
+        {
+            try
+            {
+                var result = this.bookManager.DeleteBook(bookId);
+                if (result != 0)
+                {
+                    return this.Ok(new { Status = true, Message = "Book Deleted Successfully", Data = result });
+                }
+                return this.BadRequest(new { Status = false, Message = "Book Deleted UnSuccessFully" });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+            }
+
+        }
     }
 }
