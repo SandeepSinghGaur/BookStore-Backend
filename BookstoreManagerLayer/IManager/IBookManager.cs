@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BookstoreModelLayer;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BookstoreManagerLayer.IManager
 {
-    interface IBookManager
+    public interface IBookManager
     {
+        BookModel AddBook(BookModel book);
+        IEnumerable<BookModel> GetAllBooks(int userId);
     }
 }

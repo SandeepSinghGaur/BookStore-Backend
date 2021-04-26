@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BookstoreManagerLayer.IManager
+namespace BookstoreRepositoryLayer.IRepository
 {
-    public interface IAdminManager
+    public interface IAdminRepo
     {
         AdminRegistration AddAdmin(AdminRegistration objAdmin);
     }

@@ -18,5 +18,7 @@ namespace BookstoreModelLayer
         public int Quantity { get; set; }
         public long Price { get; set; }
         public int addedTocard { get; set; }
+        [ForeignKey("CustomerRegistration")]
+        public long UserId { get; set; }
     }
 }

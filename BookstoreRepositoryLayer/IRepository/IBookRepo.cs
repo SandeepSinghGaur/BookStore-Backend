@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BookstoreModelLayer;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BookstoreRepositoryLayer.IRepository
 {
-    interface IBookRepo
+    public interface IBookRepo
     {
+        BookModel AddBook(BookModel book);
+        IEnumerable<BookModel> GetAllBooks(int userId);
     }
 }
