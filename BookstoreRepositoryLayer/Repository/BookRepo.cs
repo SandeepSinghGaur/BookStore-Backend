@@ -36,7 +36,19 @@ namespace BookstoreRepositoryLayer.Repository
 
         }
 
-        
+        public BookModel UpdateBook(int userId, BookModel newBook)
+        {
+            BookModel book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == newBook.BookId && Book.UserId == userId);
+            book.BookName = newBook.BookName;
+            book.BookImage = newBook.BookImage;
+            book.AuthorName = newBook.AuthorName;
+            book.Description = newBook.Description;
+            book.Price = newBook.Price;
+            book.Quantity = newBook.Quantity;
+            book.addedTocard = newBook.addedTocard;
+            userDbContext.SaveChanges();
+            return book;
+        }
     }
 
  }

@@ -68,5 +68,24 @@ namespace BookStore.Controllers
             }
 
         }
+        [HttpPut]
+        public ActionResult UpdateBook(BookModel newBook)
+        {
+            try
+            {
+                int userId = TokenUserId();
+                var result = this.bookManager.UpdateBook(userId, newBook);
+                if (result != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Book Update Successfully", Data = result });
+                }
+                return this.BadRequest(new { Status = false, Message = "Book Update UnSuccessFully" });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+            }
+
+        }
     }
 }

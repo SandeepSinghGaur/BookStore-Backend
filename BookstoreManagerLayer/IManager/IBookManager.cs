@@ -9,5 +9,6 @@ namespace BookstoreManagerLayer.IManager
     {
         BookModel AddBook(BookModel book);
         IEnumerable<BookModel> GetAllBooks(int userId);
+        BookModel UpdateBook(int userId, BookModel newBook);
     }
 }

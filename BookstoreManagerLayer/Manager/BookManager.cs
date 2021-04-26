@@ -23,5 +23,9 @@ namespace BookstoreManagerLayer.Manager
         {
             return this.bookRepo.GetAllBooks(userId);
         }
+        public BookModel UpdateBook(int userId, BookModel newBook)
+        {
+            return this.bookRepo.UpdateBook(userId, newBook);
+        }
     }
 }
