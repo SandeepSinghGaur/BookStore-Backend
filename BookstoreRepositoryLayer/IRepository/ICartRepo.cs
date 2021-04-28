@@ -10,5 +10,6 @@ namespace BookstoreRepositoryLayer.IRepository
         BookCart AddToCart(BookCart bookCart);
         IEnumerable<CartResponce> GetAllCarts(int userId);
         int DeletCartItem(int BookCartId);
+        BookCart UpdateBookCount(BookCart bookCart);
     }
 }

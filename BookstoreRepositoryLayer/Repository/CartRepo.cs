@@ -22,15 +22,6 @@ namespace BookstoreRepositoryLayer.Repository
         {
             try
             {
-                //var result = from cart in userDbContext.CartDB
-                //             join book in userDbContext.BookDB on cart.BookId equals book.BookId
-                //             select new
-                //             {
-                //                 cart.BookCartId,
-                //                 cart.BookQuantity,
-                //                 cart.BookId,
-                //                 cart.UserId
-                //             };
                 this.userDbContext.CartDB.Add(bookCart);
                 var result = this.userDbContext.SaveChanges();
                 if (result!= 0)
@@ -100,6 +91,26 @@ namespace BookstoreRepositoryLayer.Repository
             }
         }
 
+        public BookCart UpdateBookCount(BookCart bookCart)
+        {
+            try
+            {
+                var update = userDbContext.CartDB.Where(x => x.BookCartId == bookCart.BookCartId).FirstOrDefault();
+                update.BookQuantity = bookCart.BookQuantity;
+                userDbContext.Update(update);
+                var result = userDbContext.SaveChanges();
+                if (result > 0)
+                {
+                    return update;
+                }
+                return null;
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while Updating Book Quntity!!!" + e.Message);
+            }
+        }
     }
     }
 

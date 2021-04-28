@@ -68,7 +68,6 @@ namespace BookStore.Controllers
 
         }
         [HttpDelete]
-        //[Route("{cartId}")]
         public ActionResult DeletCartItem(int BookCartId)
         {
             try
@@ -85,6 +84,23 @@ namespace BookStore.Controllers
                 return this.BadRequest(new { Status = false, Message = e.Message });
             }
 
+        }
+        [HttpPut]
+        public IActionResult UpdateBookQuntity(BookCart bookCart)
+        {
+            try
+            {
+                var result = this.cartManager.UpdateBookCount(bookCart);
+                if (result != null)
+                {
+                    return Ok(new { Status = true, Message = "Cart Quntity Updated Successfully...", Data = result });
+                }
+                return BadRequest(new { Status = false, Message = "Error While Updating Book Quntity!!!" });
+            }
+            catch (Exception e)
+            {
+                return NotFound(new { Status = false, Message = e.Message });
+            }
         }
     }
 }

@@ -29,5 +29,10 @@ namespace BookstoreManagerLayer.Manager
             return  this.cartRepo.DeletCartItem(BookCartId);
             
         }
+
+        public BookCart UpdateBookCount(BookCart bookCart)
+        {
+            return this.cartRepo.UpdateBookCount(bookCart);
+        }
     }
 }
