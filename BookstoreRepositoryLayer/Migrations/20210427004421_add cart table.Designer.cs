@@ -2,14 +2,16 @@
 using BookstoreRepositoryLayer.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookstoreRepositoryLayer.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20210427004421_add cart table")]
+    partial class addcarttable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,22 +36,6 @@ namespace BookstoreRepositoryLayer.Migrations
                     b.HasKey("adminId");
 
                     b.ToTable("AdminDB");
-                });
-
-            modelBuilder.Entity("BookstoreModelLayer.BookCart", b =>
-                {
-                    b.Property<int>("BookCartId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BookId");
-
-                    b.Property<int>("BookQuantity");
-
-                    b.Property<long>("UserId");
-
-                    b.HasKey("BookCartId");
-
-                    b.ToTable("CartDB");
                 });
 
             modelBuilder.Entity("BookstoreModelLayer.BookModel", b =>

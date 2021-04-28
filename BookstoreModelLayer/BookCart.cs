@@ -6,18 +6,16 @@ using System.Text;
 
 namespace BookstoreModelLayer
 {
-   public class CustomerRegistration
+    public class BookCart
     {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int BookCartId { get; set; }
+        public int BookQuantity { get; set; }
+        [ForeignKey("BookModel")]
+        public int BookId { get; set; }
+        [ForeignKey("CustomerRegistration")]
         public long UserId { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-
-        public string role { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public String phone { get; set; }
     }
 }

@@ -15,26 +15,26 @@ namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : Controller
+    public class UserController : Controller
     {
-        private readonly ICustomerManager customerManager;
+        private readonly IUserManager customerManager;
         private readonly IConfiguration configuration;
-        public CustomerController(ICustomerManager customerManager, IConfiguration configuration)
+        public UserController(IUserManager customerManager, IConfiguration configuration)
         {
             this.customerManager = customerManager;
             this.configuration = configuration;
         }
         [HttpPost]
-        public ActionResult AddCustomer(CustomerRegistration customer)
+        public ActionResult AddCustomer(UserRegistration customer)
         {
             try
             {
-                var result = this.customerManager.AddCustomer(customer);
+                var result = this.customerManager.AddUser(customer);
                 if (result != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Customer Added Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "User Added Successfully", Data = result });
                 }
-                return this.BadRequest(new { Status = false, Message = "Customer Added UnSuccessfully" });
+                return this.BadRequest(new { Status = false, Message = "User Added UnSuccessfully" });
 
             }
             catch (Exception e)
@@ -48,13 +48,13 @@ namespace BookStore.Controllers
         {
             try
             {
-                var result = this.customerManager.GetAllCustomer();
+                var result = this.customerManager.GetAllUser();
 
                 if (result != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Customer Get Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "User Get Successfully", Data = result });
                 }
-                return this.BadRequest(new { Status = false, Message = "Customer Get UnSuccessfully" });
+                return this.BadRequest(new { Status = false, Message = "User Get UnSuccessfully" });
 
             }
             catch (Exception e)
@@ -65,7 +65,7 @@ namespace BookStore.Controllers
         }
         [HttpPost]
         [Route("login")]
-        public ActionResult Login(CustomerLogin login)
+        public ActionResult Login(UserLogin login)
         {
             try
             {
@@ -73,9 +73,9 @@ namespace BookStore.Controllers
                 if (result != null)
                 {
                     var token = GenrateJWTToken(result.email, result.UserId);
-                    return this.Ok(new { Status = true, Message = "Customer Varified Successfully", Data = token });
+                    return this.Ok(new { Status = true, Message = "User Varified Successfully", Data = token });
                 }
-                return this.NotFound(new { Status = false, Message = "Customer Verified UnSuccessfully" });
+                return this.NotFound(new { Status = false, Message = "User Verified UnSuccessfully" });
             }
             catch (Exception e)
             {

@@ -11,11 +11,11 @@ using System.Text;
 
 namespace BookstoreRepositoryLayer.Repository
 {
-    public class CustomerRepo : ICustomerRepo
+    public class UserRepo : IUserRepo
     {
         private readonly UserContext userDbContext;
         private readonly IConfiguration configuration;
-        public CustomerRepo(UserContext userDbContext, IConfiguration configuration)
+        public UserRepo(UserContext userDbContext, IConfiguration configuration)
         {
             this.userDbContext = userDbContext;
             this.configuration = configuration;
@@ -47,10 +47,11 @@ namespace BookstoreRepositoryLayer.Repository
             return decryptpwd;
         }
 
-        public CustomerRegistration AddCustomer(CustomerRegistration objCustomer)
+        public UserRegistration AddUser(UserRegistration objCustomer)
         {
             string encodePassword = PasswordEncryption(objCustomer.password);
             objCustomer.password = encodePassword;
+            objCustomer.role = "User";
             this.userDbContext.CustomerRegister.Add(objCustomer);
             var result = this.userDbContext.SaveChanges();
             if (result != 0)
@@ -60,14 +61,14 @@ namespace BookstoreRepositoryLayer.Repository
             return null;
         }
 
-        public IEnumerable<CustomerRegistration> GetAllCustomer()
+        public IEnumerable<UserRegistration> GetAllUser()
         {
-            var result = this.userDbContext.CustomerRegister.ToList<CustomerRegistration>();
+            var result = this.userDbContext.CustomerRegister.ToList<UserRegistration>();
             return result;
         }
-        public CustomerRegistration Login(CustomerLogin login)
+        public UserRegistration Login(UserLogin login)
         {
-            var result = this.userDbContext.CustomerRegister.Where<CustomerRegistration>(details => details.email == login.email).FirstOrDefault();
+            var result = this.userDbContext.CustomerRegister.Where<UserRegistration>(details => details.email == login.email).FirstOrDefault();
             if (result != null)
             {
                 string decryptPassword = Decryptdata(result.password);
@@ -80,7 +81,7 @@ namespace BookstoreRepositoryLayer.Repository
         {
             string subject = "Reset Password link is provided below click on the link";
            // string body="Hello Dear user link will be provided from frontend";
-            var result = this.userDbContext.CustomerRegister.Where<CustomerRegistration>(user => user.email == forget.email).FirstOrDefault();
+            var result = this.userDbContext.CustomerRegister.Where<UserRegistration>(user => user.email == forget.email).FirstOrDefault();
             if (result != null)
             {
                 string decode = Decryptdata(result.password);

@@ -36,12 +36,12 @@ namespace BookStore
         {
             services.AddDbContext<UserContext>(opts => opts.UseMySql(Configuration.GetConnectionString("MyUserDatabase")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<ICustomerManager, CustomerManager>();
-            services.AddTransient<ICustomerRepo, CustomerRepo>();
-           // services.AddTransient<IAdminManager, AdminManager>();
-            services.AddTransient<IAdminRepo, AdminRepo>();
+            services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<IUserRepo, UserRepo>();
             services.AddTransient<IBookManager, BookManager>();
             services.AddTransient<IBookRepo, BookRepo>();
+            services.AddTransient<ICartManager, CartManager>();
+            services.AddTransient<ICartRepo, CartRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Bookstore App", Version = "v1", Description = "Bookstore Application" });

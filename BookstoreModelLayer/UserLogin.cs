@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BookstoreModelLayer
 {
-    public class CustomerLogin
+    public class UserLogin
     {
         public string email { get; set; }
         public string password { get; set; }

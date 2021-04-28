@@ -14,7 +14,7 @@ namespace BookstoreRepositoryLayer.Repository
         }
        
         public DbSet<BookModel> BookDB { get; set; }
-        public DbSet<CustomerRegistration> CustomerRegister { get; set; }
-        public DbSet<AdminRegistration> AdminDB { get; set; }
+        public DbSet<UserRegistration> CustomerRegister { get; set; }
+        public DbSet<BookCart> CartDB { get; set; }
     }
 }
