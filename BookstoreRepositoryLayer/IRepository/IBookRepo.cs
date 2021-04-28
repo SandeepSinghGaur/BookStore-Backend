@@ -7,9 +7,9 @@ namespace BookstoreRepositoryLayer.IRepository
 {
     public interface IBookRepo
     {
-        BookModel AddBook(BookModel book);
-        IEnumerable<BookModel> GetAllBooks(int userId);
-        BookModel UpdateBook(int userId, BookModel newBook);
+        Book AddBook(Book book);
+        IEnumerable<Book> GetAllBooks(int userId);
+        Book UpdateBook(int userId, Book newBook);
         int DeleteBook(int bookId);
     }
 }

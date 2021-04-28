@@ -24,7 +24,7 @@ namespace BookStore.Controllers
             this.bookManager = bookManager;
         }
         [HttpPost]
-        public ActionResult AddBook(BookModel book)
+        public ActionResult AddBook(Book book)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace BookStore.Controllers
 
         }
         [HttpPut]
-        public ActionResult UpdateBook(BookModel newBook)
+        public ActionResult UpdateBook(Book newBook)
         {
             try
             {

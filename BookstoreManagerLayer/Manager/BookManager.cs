@@ -15,15 +15,15 @@ namespace BookstoreManagerLayer.Manager
         {
             this.bookRepo = (BookRepo)bookRepo;
         }
-        public BookModel AddBook(BookModel book)
+        public Book AddBook(Book book)
         {
             return this.bookRepo.AddBook(book);
         }
-        public IEnumerable<BookModel> GetAllBooks(int userId)
+        public IEnumerable<Book> GetAllBooks(int userId)
         {
             return this.bookRepo.GetAllBooks(userId);
         }
-        public BookModel UpdateBook(int userId, BookModel newBook)
+        public Book UpdateBook(int userId, Book newBook)
         {
             return this.bookRepo.UpdateBook(userId, newBook);
         }

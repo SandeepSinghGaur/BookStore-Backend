@@ -18,6 +18,7 @@ namespace BookstoreRepositoryLayer.Repository
             this.configuration = configuration;
 
         }
+
         public BookCart AddToCart(BookCart bookCart)
         {
             try
@@ -112,5 +113,5 @@ namespace BookstoreRepositoryLayer.Repository
             }
         }
     }
-    }
+ }
 

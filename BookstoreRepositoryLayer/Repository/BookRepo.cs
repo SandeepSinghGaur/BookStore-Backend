@@ -19,7 +19,7 @@ namespace BookstoreRepositoryLayer.Repository
 
         }
 
-        public BookModel AddBook(BookModel book)
+        public Book AddBook(Book book)
         {
                 this.userDbContext.BookDB.Add(book);
                 var result = this.userDbContext.SaveChanges();
@@ -30,16 +30,16 @@ namespace BookstoreRepositoryLayer.Repository
                 return null;
         }
 
-        public IEnumerable<BookModel> GetAllBooks(int userId)
+        public IEnumerable<Book> GetAllBooks(int userId)
         {
-            return this.userDbContext.BookDB.Where(user => user.UserId == userId ).ToList<BookModel>();
+            return this.userDbContext.BookDB.Where(user => user.UserId == userId ).ToList<Book>();
             
 
         }
 
-        public BookModel UpdateBook(int userId, BookModel newBook)
+        public Book UpdateBook(int userId, Book newBook)
         {
-            BookModel book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == newBook.BookId && Book.UserId == userId);
+            Book book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == newBook.BookId && Book.UserId == userId);
             book.BookName = newBook.BookName;
             book.BookImage = newBook.BookImage;
             book.AuthorName = newBook.AuthorName;
@@ -52,7 +52,7 @@ namespace BookstoreRepositoryLayer.Repository
         }
         public int DeleteBook(int bookId)
         {
-            BookModel book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == bookId);
+            Book book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == bookId);
             this.userDbContext.BookDB.Remove(book);
             this.userDbContext.SaveChanges();
             return bookId;

@@ -52,7 +52,7 @@ namespace BookstoreRepositoryLayer.Repository
             string encodePassword = PasswordEncryption(objCustomer.password);
             objCustomer.password = encodePassword;
             objCustomer.role = "User";
-            this.userDbContext.CustomerRegister.Add(objCustomer);
+            this.userDbContext.UserDB.Add(objCustomer);
             var result = this.userDbContext.SaveChanges();
             if (result != 0)
             {
@@ -63,12 +63,12 @@ namespace BookstoreRepositoryLayer.Repository
 
         public IEnumerable<UserRegistration> GetAllUser()
         {
-            var result = this.userDbContext.CustomerRegister.ToList<UserRegistration>();
+            var result = this.userDbContext.UserDB.ToList<UserRegistration>();
             return result;
         }
         public UserRegistration Login(UserLogin login)
         {
-            var result = this.userDbContext.CustomerRegister.Where<UserRegistration>(details => details.email == login.email).FirstOrDefault();
+            var result = this.userDbContext.UserDB.Where<UserRegistration>(details => details.email == login.email).FirstOrDefault();
             if (result != null)
             {
                 string decryptPassword = Decryptdata(result.password);
@@ -81,7 +81,7 @@ namespace BookstoreRepositoryLayer.Repository
         {
             string subject = "Reset Password link is provided below click on the link";
            // string body="Hello Dear user link will be provided from frontend";
-            var result = this.userDbContext.CustomerRegister.Where<UserRegistration>(user => user.email == forget.email).FirstOrDefault();
+            var result = this.userDbContext.UserDB.Where<UserRegistration>(user => user.email == forget.email).FirstOrDefault();
             if (result != null)
             {
                 string decode = Decryptdata(result.password);
