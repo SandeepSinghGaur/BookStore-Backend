@@ -15,11 +15,11 @@ namespace BookStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class AdminController : Controller
     {
         private readonly IUserManager customerManager;
         private readonly IConfiguration configuration;
-        public UserController(IUserManager customerManager, IConfiguration configuration)
+        public AdminController(IUserManager customerManager, IConfiguration configuration)
         {
             this.customerManager = customerManager;
             this.configuration = configuration;
@@ -29,38 +29,18 @@ namespace BookStore.Controllers
         {
             try
             {
-                customer.role = "User";
+                customer.role = "Admin";
                 var result = this.customerManager.AddUser(customer);
                 if (result != null)
                 {
-                    return this.Ok(new { Status = true, Message = "User Added Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "Admin Added Successfully", Data = result });
                 }
-                return this.BadRequest(new { Status = false, Message = "User Added UnSuccessfully" });
+                return this.BadRequest(new { Status = false, Message = "Admin Added UnSuccessfully" });
 
             }
             catch (Exception e)
             {
                 return this.BadRequest(new { Status = false, Message = e.Message });
-
-            }
-        }
-        [HttpGet]
-        public ActionResult GetAllCustomer()
-        {
-            try
-            {
-                var result = this.customerManager.GetAllUser();
-
-                if (result != null)
-                {
-                    return this.Ok(new { Status = true, Message = "User Get Successfully", Data = result });
-                }
-                return this.BadRequest(new { Status = false, Message = "User Get UnSuccessfully" });
-
-            }
-            catch (Exception e)
-            {
-                return this.NotFound(new { Status = false, Message = e.Message });
 
             }
         }
@@ -73,10 +53,10 @@ namespace BookStore.Controllers
                 var result = this.customerManager.Login(login);
                 if (result != null)
                 {
-                    var token = GenrateJWTToken(result.email, result.UserId,result.role);
-                    return this.Ok(new { Status = true, Message = "User Varified Successfully", Data = token });
+                    var token = GenrateJWTToken(result.email, result.UserId, result.role);
+                    return this.Ok(new { Status = true, Message = "Admin Varified Successfully", Data = token });
                 }
-                return this.NotFound(new { Status = false, Message = "User Verified UnSuccessfully" });
+                return this.NotFound(new { Status = false, Message = "Admin Verified UnSuccessfully" });
             }
             catch (Exception e)
             {
@@ -84,7 +64,7 @@ namespace BookStore.Controllers
 
             }
         }
-        private string GenrateJWTToken(string Email, long userId,string role)
+        private string GenrateJWTToken(string Email, long userId, string role)
         {
             /// key getting from startup class
             var secretkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Key"]));
@@ -103,27 +83,6 @@ namespace BookStore.Controllers
                 );
             string token = new JwtSecurityTokenHandler().WriteToken(tokenOptionOne);
             return token;
-        }
-        [HttpGet]
-        [Route("ForgotPassword/{email}")]
-        public IActionResult ForgotPassword(string email)
-        {
-            try
-            {
-                ForgetPassword forget = new ForgetPassword();
-                forget.email = email;
-                var result = this.customerManager.ForgetPassword(forget);
-
-                if (result != null)
-                {
-                    return this.Ok(new { Status = true, Message = "Password Send Successfully", Data = result });
-                }
-                return this.NotFound(new { Status = false, Message = "Sending Password Failed" });
-            }
-            catch (Exception e)
-            {
-                return this.BadRequest(new { Status = false, Message = e.Message });
-            }
         }
     }
 }

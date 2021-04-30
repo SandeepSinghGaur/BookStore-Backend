@@ -13,7 +13,7 @@ namespace BookStore.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class BookController : Controller
     {
         private readonly IBookManager bookManager;

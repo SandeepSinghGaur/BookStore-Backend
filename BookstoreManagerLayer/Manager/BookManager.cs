@@ -10,10 +10,10 @@ namespace BookstoreManagerLayer.Manager
 {
     public class BookManager:IBookManager
     {
-        private readonly BookRepo bookRepo;
+        private readonly IBookRepo bookRepo;
         public BookManager(IBookRepo bookRepo)
         {
-            this.bookRepo = (BookRepo)bookRepo;
+            this.bookRepo = bookRepo;
         }
         public Book AddBook(Book book)
         {

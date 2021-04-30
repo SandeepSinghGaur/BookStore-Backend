@@ -29,5 +29,7 @@ namespace BookstoreModelLayer
 
         [Required]
         public string State { get; set; }
+        [ForeignKey("CustomerRegistration")]
+        public long UserId { get; set; }
     }
 }

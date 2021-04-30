@@ -10,10 +10,10 @@ namespace BookstoreManagerLayer.Manager
 {
     public class CartManager : ICartManager
     {
-        private readonly CartRepo cartRepo;
+        private readonly ICartRepo cartRepo;
         public CartManager(ICartRepo cartRepo)
         {
-            this.cartRepo = (CartRepo)cartRepo;
+            this.cartRepo = cartRepo;
         }
         public BookCart AddToCart(BookCart bookCart)
         {

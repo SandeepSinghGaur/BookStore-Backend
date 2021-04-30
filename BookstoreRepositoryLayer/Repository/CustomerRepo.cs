@@ -1,5 +1,6 @@
 ﻿using BookstoreModelLayer;
 using BookstoreRepositoryLayer.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,24 @@ namespace BookstoreRepositoryLayer.Repository
             catch (Exception e)
             {
                 throw new Exception("Error while AddCustomerDetails " + e.Message);
+            }
+        }
+
+        public CustomerDetails UpdateCustomerDetails(CustomerDetails update)
+        {
+            try
+            {
+                if (update.UserId > 0)
+                {
+                    userDbContext.Entry(update).State = EntityState.Modified;
+                    userDbContext.SaveChanges();
+                    return update;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error While Updating Customer Record" + e.Message);
             }
         }
     }

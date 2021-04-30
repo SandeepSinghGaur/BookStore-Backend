@@ -8,5 +8,6 @@ namespace BookstoreRepositoryLayer.IRepository
     public interface ICustomerRepo
     {
         CustomerDetails AddCustomerDetails(CustomerDetails customerDetails);
+        CustomerDetails UpdateCustomerDetails(CustomerDetails update);
     }
 }

@@ -6,14 +6,18 @@ using System.Text;
 
 namespace BookstoreModelLayer
 {
-    public class OrderItems
+   public class WishList
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderId { get; set; }
-        public List<BookCart> Orders { get; set; }
-        public CustomerDetails customer { get; set; }
-        [ForeignKey("CustomerRegistration")]
+        public int WishId { get; set; }
+
+        [Required]
+        [ForeignKey("UserRegistration")]
         public long UserId { get; set; }
+
+        [Required]
+        [ForeignKey("Book")]
+        public int BookId { get; set; }
     }
 }

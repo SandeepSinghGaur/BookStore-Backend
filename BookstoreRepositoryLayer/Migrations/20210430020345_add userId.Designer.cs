@@ -3,14 +3,16 @@ using System;
 using BookstoreRepositoryLayer.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookstoreRepositoryLayer.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20210430020345_add userId")]
+    partial class adduserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,20 +136,6 @@ namespace BookstoreRepositoryLayer.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("UserDB");
-                });
-
-            modelBuilder.Entity("BookstoreModelLayer.WishList", b =>
-                {
-                    b.Property<int>("WishId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BookId");
-
-                    b.Property<long>("UserId");
-
-                    b.HasKey("WishId");
-
-                    b.ToTable("WishDB");
                 });
 
             modelBuilder.Entity("BookstoreModelLayer.BookCart", b =>

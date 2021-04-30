@@ -27,14 +27,14 @@ namespace BookstoreRepositoryLayer.Repository
                 {
                     return book;
                 }
+            
                 return null;
         }
 
         public IEnumerable<Book> GetAllBooks(int userId)
         {
             return this.userDbContext.BookDB.Where(user => user.UserId == userId ).ToList<Book>();
-            
-
+        
         }
 
         public Book UpdateBook(int userId, Book newBook)

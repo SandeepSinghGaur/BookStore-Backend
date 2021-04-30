@@ -39,5 +39,23 @@ namespace BookStore.Controllers
 
             }
         }
+        [HttpPut]
+        public IActionResult UpdateCustomerDetails(CustomerDetails updates)
+        {
+            try
+            {
+                var update = this.customerManager.UpdateCustomerDetails(updates);
+                if (update != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Address Updated Succesfully", Data = update });
+                }
+                return this.NotFound(new { Status = false, Message = "Error While Updating Address" });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+
+            }
+        }
     }
 }

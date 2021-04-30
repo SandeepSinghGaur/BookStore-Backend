@@ -44,6 +44,8 @@ namespace BookStore
             services.AddTransient<ICartRepo, CartRepo>();
             services.AddTransient<ICustomerManager, CustomerManager>();
             services.AddTransient<ICustomerRepo, CustomerRepo>();
+            services.AddTransient<IWishListManager, WishListManager>();
+            services.AddTransient<IWishListRepo, WishListRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Bookstore App", Version = "v1", Description = "Bookstore Application" });

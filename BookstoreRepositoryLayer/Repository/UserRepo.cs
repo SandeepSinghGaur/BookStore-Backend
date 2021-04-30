@@ -51,7 +51,6 @@ namespace BookstoreRepositoryLayer.Repository
         {
             string encodePassword = PasswordEncryption(objCustomer.password);
             objCustomer.password = encodePassword;
-            objCustomer.role = "User";
             this.userDbContext.UserDB.Add(objCustomer);
             var result = this.userDbContext.SaveChanges();
             if (result != 0)
