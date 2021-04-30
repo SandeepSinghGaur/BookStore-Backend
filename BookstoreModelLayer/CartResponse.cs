@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BookstoreModelLayer
 {
-    public class CartResponce
+    public class CartResponse
     {
         public int BookId { get; set; }
 

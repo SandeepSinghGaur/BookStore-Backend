@@ -57,5 +57,28 @@ namespace BookStore.Controllers
 
             }
         }
+        [HttpGet]
+        public ActionResult GetCustomerAddress()
+        {
+            try
+            {
+                int userId = TokenUserId();
+                var result = this.customerManager.GetCustomerAddress(userId);
+                if (result != null)
+                {
+                    return this.Ok(new { Status = true, Message = "All Customer Address Get Successfully", Data = result });
+                }
+                return this.BadRequest(new { Status = false, Message = "All Customer Address Get SuccessFully" });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+            }
+
+        }
+        private int TokenUserId()
+        {
+            return Convert.ToInt32(User.FindFirst("userId").Value);
+        }
     }
 }

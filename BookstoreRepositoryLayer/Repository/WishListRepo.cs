@@ -52,7 +52,7 @@ namespace BookstoreRepositoryLayer.Repository
             }
             catch (Exception e)
             {
-                throw new Exception("Error While Removing Data" + e.Message);
+                throw new Exception("Error While Removing Book" + e.Message);
             }
         }
     }

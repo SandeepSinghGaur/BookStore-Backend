@@ -29,15 +29,18 @@ namespace BookStore.Controllers
         {
             try
             {
-                customer.role = "Admin";
-                var result = this.customerManager.AddUser(customer);
-                if (result != null)
+                if (customer.role == "Admin")
                 {
-                    return this.Ok(new { Status = true, Message = "Admin Added Successfully", Data = result });
+                    var result = this.customerManager.AddUser(customer);
+                    if (result != null)
+                    {
+                        return this.Ok(new { Status = true, Message = "Admin Added Successfully", Data = result });
+                    }
                 }
-                return this.BadRequest(new { Status = false, Message = "Admin Added UnSuccessfully" });
+                    return this.BadRequest(new { Status = false, Message = "Admin Added UnSuccessfully" });
 
-            }
+                }
+            
             catch (Exception e)
             {
                 return this.BadRequest(new { Status = false, Message = e.Message });

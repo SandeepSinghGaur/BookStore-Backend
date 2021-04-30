@@ -20,9 +20,9 @@ namespace BookstoreManagerLayer.Manager
             return this.cartRepo.AddToCart(bookCart);
         }
 
-        public IEnumerable<CartResponce> GetAllCarts(int userId)
+        public IEnumerable<CartResponse> GetAllCarts(int userId)
         {
-            return (IEnumerable<CartResponce>)this.cartRepo.GetAllCarts(userId);
+            return (IEnumerable<CartResponse>)this.cartRepo.GetAllCarts(userId);
         }
         public int DeletCartItem(int BookCartId)
         {

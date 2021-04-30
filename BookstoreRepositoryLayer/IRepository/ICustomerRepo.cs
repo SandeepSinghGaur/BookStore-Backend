@@ -9,5 +9,6 @@ namespace BookstoreRepositoryLayer.IRepository
     {
         CustomerDetails AddCustomerDetails(CustomerDetails customerDetails);
         CustomerDetails UpdateCustomerDetails(CustomerDetails update);
+        IEnumerable<CustomerResponse> GetCustomerAddress(int userId);
     }
 }

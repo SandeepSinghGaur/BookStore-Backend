@@ -29,11 +29,13 @@ namespace BookStore.Controllers
         {
             try
             {
-                customer.role = "User";
-                var result = this.customerManager.AddUser(customer);
-                if (result != null)
+                if (customer.role == "User")
                 {
-                    return this.Ok(new { Status = true, Message = "User Added Successfully", Data = result });
+                    var result = this.customerManager.AddUser(customer);
+                    if (result != null)
+                    {
+                        return this.Ok(new { Status = true, Message = "User Added Successfully", Data = result });
+                    }
                 }
                 return this.BadRequest(new { Status = false, Message = "User Added UnSuccessfully" });
 

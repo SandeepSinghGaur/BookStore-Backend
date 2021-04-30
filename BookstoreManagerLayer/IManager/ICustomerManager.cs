@@ -9,5 +9,6 @@ namespace BookstoreManagerLayer.IManager
     {
         CustomerDetails AddCustomerDetails(CustomerDetails customerDetails);
         CustomerDetails UpdateCustomerDetails(CustomerDetails update);
+        IEnumerable<CustomerResponse> GetCustomerAddress(int userId);
     }
 }

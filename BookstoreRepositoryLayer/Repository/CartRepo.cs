@@ -37,16 +37,16 @@ namespace BookstoreRepositoryLayer.Repository
             }
         }
 
-        public IEnumerable<CartResponce> GetAllCarts(int userId)
+        public IEnumerable<CartResponse> GetAllCarts(int userId)
         {
                 try
                 {
-                    List<CartResponce> getResult = new List<CartResponce>();
+                    List<CartResponse> getResult = new List<CartResponse>();
                     var result = from BookModel in userDbContext.BookDB
                                  join CartModel in userDbContext.CartDB
                                  on BookModel.BookId equals CartModel.BookId
 
-                                 select new CartResponce()
+                                 select new CartResponse()
                                  {
                                      BookId = BookModel.BookId,
                                      BookName = BookModel.BookName,
@@ -72,7 +72,7 @@ namespace BookstoreRepositoryLayer.Repository
                 {
                     throw new Exception("Error while Get_Cart_Item " + e.Message);
                 }
-            }
+        }
         public int DeletCartItem(int BookCartId)
         {
             try

@@ -8,7 +8,7 @@ namespace BookstoreManagerLayer.IManager
     public interface ICartManager
     {
         BookCart AddToCart(BookCart bookCart);
-        IEnumerable<CartResponce> GetAllCarts(int userId);
+        IEnumerable<CartResponse> GetAllCarts(int userId);
         int DeletCartItem(int BookCartId);
         BookCart UpdateBookCount(BookCart bookCart);
     }

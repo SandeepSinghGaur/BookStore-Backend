@@ -20,6 +20,11 @@ namespace BookstoreManagerLayer.Manager
             return this.customerRepo.AddCustomerDetails(customerDetails);
         }
 
+        public IEnumerable<CustomerResponse> GetCustomerAddress(int userId)
+        {
+            return this.customerRepo.GetCustomerAddress(userId);
+        }
+
         public CustomerDetails UpdateCustomerDetails(CustomerDetails update)
         {
             return this.customerRepo.UpdateCustomerDetails(update);

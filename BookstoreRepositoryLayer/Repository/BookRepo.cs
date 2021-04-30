@@ -21,41 +21,68 @@ namespace BookstoreRepositoryLayer.Repository
 
         public Book AddBook(Book book)
         {
+            try
+            {
                 this.userDbContext.BookDB.Add(book);
                 var result = this.userDbContext.SaveChanges();
                 if (result != 0)
                 {
                     return book;
                 }
-            
                 return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while AddBook " + e.Message);
+            }
         }
 
         public IEnumerable<Book> GetAllBooks(int userId)
         {
-            return this.userDbContext.BookDB.Where(user => user.UserId == userId ).ToList<Book>();
-        
+            try
+            {
+                return this.userDbContext.BookDB.Where(user => user.UserId == userId).ToList<Book>();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while GetAllBooks " + e.Message);
+            }
+
         }
 
         public Book UpdateBook(int userId, Book newBook)
         {
-            Book book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == newBook.BookId && Book.UserId == userId);
-            book.BookName = newBook.BookName;
-            book.BookImage = newBook.BookImage;
-            book.AuthorName = newBook.AuthorName;
-            book.Description = newBook.Description;
-            book.Price = newBook.Price;
-            book.Quantity = newBook.Quantity;
-            book.addedTocard = newBook.addedTocard;
-            userDbContext.SaveChanges();
-            return book;
+            try
+            {
+                Book book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == newBook.BookId && Book.UserId == userId);
+                book.BookName = newBook.BookName;
+                book.BookImage = newBook.BookImage;
+                book.AuthorName = newBook.AuthorName;
+                book.Description = newBook.Description;
+                book.Price = newBook.Price;
+                book.Quantity = newBook.Quantity;
+                book.addedTocard = newBook.addedTocard;
+                userDbContext.SaveChanges();
+                return book;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while UpdateBook " + e.Message);
+            }
         }
         public int DeleteBook(int bookId)
         {
-            Book book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == bookId);
-            this.userDbContext.BookDB.Remove(book);
-            this.userDbContext.SaveChanges();
-            return bookId;
+            try
+            {
+                Book book = userDbContext.BookDB.FirstOrDefault(Book => Book.BookId == bookId);
+                this.userDbContext.BookDB.Remove(book);
+                this.userDbContext.SaveChanges();
+                return bookId;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while DeleteBook " + e.Message);
+            }
 
         }
     }

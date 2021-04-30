@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace BookstoreRepositoryLayer.Repository
 {
     public class CustomerRepo : ICustomerRepo
@@ -57,5 +57,44 @@ namespace BookstoreRepositoryLayer.Repository
                 throw new Exception("Error While Updating Customer Record" + e.Message);
             }
         }
+        public IEnumerable<CustomerResponse> GetCustomerAddress(int userId)
+        {
+            try
+            {
+                List<CustomerResponse> getResult = new List<CustomerResponse>();
+                var result = from CustomerModel in userDbContext.CustomerDB
+                             join AddressType in userDbContext.AddressDB
+                             on CustomerModel.AddressTypeId equals AddressType.AddressTypeId
+
+                             select new CustomerResponse()
+                             {
+                                 CustomerId = CustomerModel.CustomerId,
+                                 Fullname = CustomerModel.Fullname,
+                                 Phone = CustomerModel.Phone,
+                                 Pincode = CustomerModel.Pincode,
+                                 City = CustomerModel.City,
+                                 State = CustomerModel.State,
+                                 Email = CustomerModel.Email,
+                                 FullAddress = CustomerModel.FullAddress,
+                                 CustomerAddressType = AddressType.CustomerAddressType,
+                                 UserId = CustomerModel.UserId,
+                             };
+                foreach (var data in result)
+                {
+                    if (data.UserId == userId)
+                    {
+                        getResult.Add(data);
+                    }
+                   
+                }
+                return getResult;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error While Getting Customer Record" + e.Message);
+            }
+        }
     }
 }
+    
+

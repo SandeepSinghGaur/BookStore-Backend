@@ -6,10 +6,9 @@ using System.Text;
 
 namespace BookstoreModelLayer
 {
-    public class CustomerDetails
+    public class CustomerResponse
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CustomerId { get; set; }
         [Required]
         public string Fullname { get; set; }
@@ -17,6 +16,7 @@ namespace BookstoreModelLayer
         public string Phone { get; set; }
         [Required]
         public string Pincode { get; set; }
+        public string CustomerAddressType { get; set; }
 
         [Required]
         public string FullAddress { get; set; }
@@ -30,8 +30,5 @@ namespace BookstoreModelLayer
         public string State { get; set; }
         [ForeignKey("CustomerRegistration")]
         public long UserId { get; set; }
-        [Required]
-        [ForeignKey("AddressType")]
-        public int AddressTypeId { get; set; }
     }
 }
